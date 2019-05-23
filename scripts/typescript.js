@@ -40,6 +40,10 @@ function loadJSON(pokemon) {
     xhr.send();
 }
 function getRandom(max, min) {
+    /*Gets a random pokemon from the first ~800 on the list
+    (There are more than 800 but their order is a bit strange, as in
+    randomly placed in the thousands. deoxys-attack, for example, has
+    an ID of 10,001*/
     return Math.floor(Math.random() * (max - min)) + min;
 }
 function loadCard(pInfo) {
@@ -50,6 +54,7 @@ function loadCard(pInfo) {
     pokeInfo.append(card);
     var pic = document.createElement('img');
     var cardAnim = getRandom(3, 0);
+    //Add random animation to card 
     pic.className = "img-fluid card-img-top " + animations[cardAnim];
     if (pInfo.sprites.front_default == null) {
         pic.src = 'images/noImage.png';
@@ -85,6 +90,7 @@ function loadCard(pInfo) {
     cardBody.append(removeBtn);
     removeBtn.addEventListener('click', function () {
         card.className = "zoomerOut";
+        //Timeout gives deletion animation time to play
         setTimeout(function () {
             card.remove();
         }, 600);
